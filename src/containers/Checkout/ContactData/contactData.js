@@ -3,16 +3,27 @@ import Button from '../../../components/UI/Button/Button'
 import classes from './contactData.css'
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spiner/Spinner'
+import Input from '../../../components/UI/Input/input'
 
 class ContactData extends Component {
 
     state = {
-        name: '',
-        email: '',
-        address: {
-            street: '',
-            postalCode: '',
-        },
+       orderForm: {
+           name: {
+               elementType: 'input',
+               elementConfig: {
+                   type: 'text',
+                   placeholder: 'Your Name'
+               },
+               value: ''
+           },
+            name: 'Bryan Rhodunda',
+            street: '2619 Fogg lane',
+            zipCode: '19808',
+            country: 'United State of America',
+            email: 'rhodunda@udel.edu',
+            deliveryMethod: 'fastest'
+       },
         loading: false
     }
 
@@ -25,16 +36,7 @@ class ContactData extends Component {
         const order = {
             ingredients: this.props.ingredients,
             price: this.props.price,
-            customer: {
-                name: 'Bryan Rhodunda',
-                address: {
-                    street: '2619 Fogg lane',
-                    zipCode: '19808',
-                    country: 'United State of America'
-                },
-                email: 'rhodunda@udel.edu'
-            },
-            deliveryMethod: 'fastest'
+            
         }
         axios.post( '/orders.json', order )
             .then( response => {
@@ -50,10 +52,10 @@ class ContactData extends Component {
 
             let form = (
                 <form>
-                    <input className={classes.Input} type="text" name="name" placeholder="Name"/>
-                    <input className={classes.Input} type="email" name="email" placeholder="E-mail"/>
-                    <input className={classes.Input} type="text" name="street" placeholder="Street"/>
-                    <input className={classes.Input} type="text" name="postal" placeholder="Postal Code"/>
+                    <Input inputtype='input' type="text" name="name" placeholder="Name"/>
+                    <Input inputtype='input' type="email" name="email" placeholder="E-mail"/>
+                    <Input inputtype='input' type="text" name="street" placeholder="Street"/>
+                    <Input inputtype='input' type="text" name="postal" placeholder="Postal Code"/>
                     <Button  clicked={this.orderHandler} btnType="Success">ORDER</Button>
                 </form>
                 );
