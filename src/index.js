@@ -10,7 +10,7 @@ import reducer from './store/reducer'
 
 
 
-const store = createStore(reducer)
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 
 const app = (
@@ -22,3 +22,6 @@ const app = (
 )
 ReactDOM.render(app, document.getElementById('root'));
 registerServiceWorker();
+
+
+
