@@ -6,24 +6,24 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import {createStore, applyMiddleware, compose} from 'redux'
-import burgerBuliderReducer from './store/reducers/burgerBulider'
+import burgerBuliderReducer from '../src/store/reducers/burgerBulider'
 import thunk from 'redux-thunk'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(burgerBuliderReducer, composeEnhancers(
     applyMiddleware(thunk)
-))
-
+));
 
 const app = (
     <Provider store={store}>
-        <BrowserRouter> 
-            <App/>
+        <BrowserRouter>
+            <App />
         </BrowserRouter>
     </Provider>
-)
-ReactDOM.render(app, document.getElementById('root'));
+);
+
+ReactDOM.render( app, document.getElementById( 'root' ) );
 registerServiceWorker();
 
 
